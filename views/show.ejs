@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <%- include("./head.ejs") %>
+  <body>
+    <h1>Entry Page</h1>
+    <p>Name: <%=entry.name%></p>
+    <br />
+    <p>Date: <%=entry.date%></p>
+    <br />
+    <p>From: <%=entry.from%></p>
+    <br />
+    <p>Amount: <%=entry.amount%></p>
+    <br />
+    <p><%=entry.tags%></p>
+    <br />
+  </body>
 </html>

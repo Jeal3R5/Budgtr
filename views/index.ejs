@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="'stylesheet" href="/normalize.css" />
-    <link rel=""stylesheet href="/skeleton.css"/>
-</head>
-<body>
+  <%- include("./head.ejs") %>
+  <body>
     <div class="container">
-        <h1>Budgtr ALL</h1>
+      <h1>Budgtr ALL</h1>
+      <!-- <% %> This creates a way to write valid JS line by line as long as these chaacters are at the beginning and end of each line -->
+      <!-- <%= %> This injects content using object or array location in valid JS -->
+
+      <h1><%=budgets.name%></h1>
     </div>
-</body>
+  </body>
 </html>
+<table>
+  <%for(let entry in budgets){ %>
+  <tr>
+    <td><%=budgets[entry].date %></td>
+    <td>
+      <a href="http://localhost:3000/budgets/<%=entry%>"
+        ><%=budgets[entry].name %></a
+      >
+    </td>
+    <td><%=budgets[entry].from %></td>
+    <td><%=budgets[entry].amount %></td>
+    <td><%=budgets[entry].tags%></td>
+  </tr>
+
+  <% } %>
+</table>

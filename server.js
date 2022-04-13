@@ -1,19 +1,15 @@
 const express = require("express");
-const res = require("express/lib/response");
 const app = express();
 const PORT = 3000;
-const budgets = "models/budget.js";
-
+const budgets = require("./models/budget.js");
+const morgan = require("morgan");
 
 
 ///////////////// Middleware /////////
 
-app.use(express.static('public'))
-
-
-
-
-
+app.use( express.urlencoded({extended: false }))
+app.use(express.static('public'));
+app.use(morgan("tiny"))
 
 
 
@@ -26,27 +22,41 @@ app.use(express.static('public'))
       budgets: budgets,
     });
   });
+  
+
+
+  //New
+  app.get("/budgets/new", (req, res) => {
+    res.render('new.ejs');
+  });
+
+   //Create
+  app.post("/budgets", (req, res) => {
+    budgets.unshift(req.body)
+    res.redirect("/budgets")
+  });
 
 
 
- //Show
-app.get("/budgets/:index", (req, res) => {
-  res.render('show.ejs');
-});
-
-
-//New
-app.get("/budgets/new", (req, res) => {
-  res.render('new.ejs');
-});
-
-
-
-
-
-// //Create
-// app.POST("/budgets", (req, res) => {});
-
-app.listen(PORT, () => {
-  console.log(`We are listening on port ${PORT}`);
-});
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   //Show
+  app.get("/budgets/:id", (req, res) => {
+    res.render('show.ejs', {
+      entry: budgets[req.params.id]
+    });
+  });
+  
+  
+  
+  app.listen(PORT, () => {
+    console.log(`We are listening on port ${PORT}`);
+  });

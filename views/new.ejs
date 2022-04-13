@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("./head.ejs") %>
+<body>
+    <form action="/budgets" method="post"> 
+    Date:    <input name="date" type="text"> req.params.date
+    Name:    <input name="name"type="text"> req.params.name
+    From:    <input name="from" type="text"> req.params.from
+    Amount:  <input name="amount" type="text"> req.params.amount
+    Tags:    <input name="tags" type="text"> req.params.tags
+    <input type="submit" value="New Entry">
+    </form>
+</body>
+</html>
