@@ -1,20 +1,51 @@
 const express = require("express");
+const res = require("express/lib/response");
 const app = express();
 const PORT = 3000;
-const budget =
-  //Index
+const budgets = "models/budget.js";
+
+
+
+///////////////// Middleware /////////
+
+app.use(express.static('public'))
+
+
+
+
+
+
+
+
+/////////////// Routes ///////////////
+
+
+//Index
   app.get("/budgets", (req, res) => {
-    res.send("Hello World!");
+    res.render("index.ejs", {
+      budgets: budgets,
+    });
   });
 
-//Show
-app.get("/budgets/:index", (req, res) => {});
+
+
+ //Show
+app.get("/budgets/:index", (req, res) => {
+  res.render('show.ejs');
+});
+
 
 //New
-app.get("/budgets/new", (req, res) => {});
+app.get("/budgets/new", (req, res) => {
+  res.render('new.ejs');
+});
 
-//Create
-app.post("/budgets", (req, res) => {});
+
+
+
+
+// //Create
+// app.POST("/budgets", (req, res) => {});
 
 app.listen(PORT, () => {
   console.log(`We are listening on port ${PORT}`);
