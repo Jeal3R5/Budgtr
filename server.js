@@ -33,8 +33,7 @@ app.post("/budgets", (req, res) => {
 //Show
 app.get("/budgets/:id", (req, res) => {
   res.render("show.ejs", {
-    entry: budgets[req.params.id],
-  });
+    entry: budgets[req.params.id] })
 });
 
 app.listen(PORT, () => {
